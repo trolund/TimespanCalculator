@@ -1,5 +1,5 @@
 {
-  "name": "next-pwa-boilerplate",
+  "name": "time-span-calculator",
   "version": "1.3.0",
   "description": "",
   "main": "server/index.js",
@@ -12,9 +12,6 @@
   },
   "author": "Troels Lund <trolund@gmail.com> (https://troelslund.dk/)",
   "license": "MIT",
-  "bugs": {
-    "url": ""
-  },
   "homepage": "",
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",

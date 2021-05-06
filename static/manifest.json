@@ -1,6 +1,6 @@
 {
-  "short_name": "Next PWA",
-  "name": "Next PWA Boilerplate",
+  "short_name": "Time span",
+  "name": "Time span calculator",
   "icons": [
     {
       "src": "/static/graphics/icon-144.png",
@@ -20,6 +20,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#fff",
+  "theme_color": "#035efc",
   "background_color": "#000"
 }

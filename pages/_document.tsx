@@ -4,8 +4,8 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 import React from "react";
 
 
-export const title = "";
-const description = "";
+export const title = "Time span calculator";
+const description = "Time span calculator";
 const url = ``;
 const thumbnail = `${url}/static/graphics/thumbnail.png`;
 

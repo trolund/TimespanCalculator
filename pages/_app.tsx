@@ -3,11 +3,12 @@ import Head from 'next/head';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { red } from '@material-ui/core/colors';
+import '../public/styles.css'
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#035efc',
     },
     secondary: {
       main: '#19857b',
@@ -41,7 +42,7 @@ export default function MyApp(props: IMyApp) {
   return (
     <React.Fragment>
       <Head>
-        <title>My page</title>
+        <title>Time span calculator</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>

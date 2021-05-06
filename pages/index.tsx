@@ -7,10 +7,7 @@ const Index = () => (
   <>
     <div>
 
-      <Container maxWidth="sm">
-        <Typography variant="h4" component="h1" gutterBottom>
-          Time Calculator
-        </Typography>
+      <Container maxWidth="sm" className="container">
         <Time />
       </Container>
     </div>

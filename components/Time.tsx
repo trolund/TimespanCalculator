@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns'
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 
@@ -10,9 +10,8 @@ enum TimeType {
 
 export function Time() {
     const [now, onChange] = useState(Date.now);
-
-    const [startDate, setStartDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const [endDate, setendDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [startDate, setStartDate] = React.useState(new Date('2021-08-18T08:00:00'));
+    const [endDate, setendDate] = React.useState(new Date('2021-08-18T16:00:00'));
 
     const handleDateChange = (type: TimeType, date: Date) => {
         if (type === TimeType.START) {
@@ -51,11 +50,15 @@ export function Time() {
     }
 
     return (
-        <div style={{ margin: "1rem" }}>
-            <h1 style={{ margin: "auto", textAlign: "center" }}>{formatDate(now)}</h1>
+        <div style={{ margin: "2rem" }}>
+            <Typography variant="h4" component="h1" gutterBottom>
+                Time Calculator
+            </Typography>
+            <h1 className="clock">{formatDate(now)}</h1>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
                     <KeyboardTimePicker
+                        color="primary"
                         margin="normal"
                         id="time-picker"
                         label="Start time"
@@ -68,6 +71,7 @@ export function Time() {
                         }}
                     />
                     <KeyboardTimePicker
+                        color="primary"
                         margin="normal"
                         id="time-picker"
                         format="HH:mm"
@@ -81,7 +85,7 @@ export function Time() {
                     />
                 </Grid>
             </MuiPickersUtilsProvider>
-            <h1 style={{ margin: "auto", textAlign: "center" }}>{getAmountOfTime(startDate, endDate)}</h1>
+            <h1 className="clock">{getAmountOfTime(startDate, endDate)}</h1>
         </ div>
     );
 }

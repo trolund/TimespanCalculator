@@ -1,0 +1,21 @@
+:root {
+    --main-color: "#035efc";
+}
+
+.container {
+    padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px) env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px);
+}
+
+.page-header {
+    padding: 3rem;
+    margin: auto;
+    text-align: center;
+    color: var(--main-color);
+}
+
+.clock {
+    padding: 2rem;
+    margin: auto;
+    text-align: center;
+    color: var(--main-color);
+}

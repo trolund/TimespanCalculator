@@ -51,7 +51,7 @@ export function Time() {
 
     return (
         <div style={{ margin: "2rem" }}>
-            <Typography variant="h4" component="h1" gutterBottom>
+            <Typography color="primary" variant="h4" component="h1" className="page-header" gutterBottom>
                 Time Calculator
             </Typography>
             <h1 className="clock">{formatDate(now)}</h1>

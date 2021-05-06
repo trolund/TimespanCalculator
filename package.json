@@ -7,7 +7,7 @@
     "build": "next build",
     "deploy": "now --target production",
     "dev": "next",
-    "start": "next start"
+    "start": "next start -p 8080"
   },
   "author": "Troels Lund <trolund@gmail.com> (https://troelslund.dk/)",
   "license": "MIT",

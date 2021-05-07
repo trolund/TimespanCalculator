@@ -4,6 +4,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { red } from '@material-ui/core/colors';
 import '../public/styles.css'
+import Nav from '../components/Nav';
+import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
@@ -31,6 +34,8 @@ interface IMyApp {
 export default function MyApp(props: IMyApp) {
   const { Component, pageProps } = props;
 
+  const [location, setLocation] = React.useState(0);
+
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -39,16 +44,25 @@ export default function MyApp(props: IMyApp) {
     }
   }, []);
 
+  const title = "Time span calculator"
+
   return (
     <React.Fragment>
       <Head>
-        <title>Time span calculator</title>
+        <title>{title}</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography variant="h6" color="inherit">
+              {title}
+            </Typography>
+          </Toolbar>
+        </AppBar>
         <CssBaseline />
         <Component {...pageProps} />
+        <Nav setLocation={setLocation} location={location} />
       </ThemeProvider>
     </React.Fragment>
   );

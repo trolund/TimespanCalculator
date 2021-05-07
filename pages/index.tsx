@@ -1,26 +1,20 @@
-import { Box, Container, Link, Typography } from "@material-ui/core";
+import { BottomNavigation, BottomNavigationAction, Box, Container, Link, Typography } from "@material-ui/core";
 import fetch from "isomorphic-unfetch";
 import React from "react";
+import Nav from "../components/Nav";
 import { Time } from "../components/Time";
 
-const Index = () => (
-  <>
-    <div>
+const Index = () => {
+  return (
+    <>
+      <div>
+        <Container maxWidth="sm" className="container">
+          <Time />
+        </Container>
 
-      <Container maxWidth="sm" className="container">
-        <Time />
-      </Container>
-    </div>
-  </>
-);
-
-// Index.getInitialProps = async function () {
-//   const fetchPosts = await fetch("https://jsonplaceholder.typicode.com/posts");
-//   const posts = await fetchPosts.json();
-
-//   return {
-//     posts
-//   };
-// };
+      </div>
+    </>
+  );
+}
 
 export default Index;

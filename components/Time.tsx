@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Typography } from '@material-ui/core'
+import { Button, Grid, Input, Typography } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns'
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import { addItem } from '../services/timeSaver';
+import { formatDate, getAmountOfTimeString } from '../services/dateService';
 
 enum TimeType {
     START,
@@ -10,8 +12,9 @@ enum TimeType {
 
 export function Time() {
     const [now, onChange] = useState(Date.now);
-    const [startDate, setStartDate] = React.useState(new Date('2021-08-18T08:00:00'));
-    const [endDate, setendDate] = React.useState(new Date('2021-08-18T16:00:00'));
+    const [startDate, setStartDate] = React.useState(new Date());
+    const [endDate, setendDate] = React.useState(new Date());
+    const [name, setName] = useState<string>("code");
 
     const handleDateChange = (type: TimeType, date: Date) => {
         if (type === TimeType.START) {
@@ -32,28 +35,8 @@ export function Time() {
         }
     }, []);
 
-    const formatDate = (d: number) => {
-        const data = new Date(d);
-        return `${data.getHours() < 10 ? "0" + data.getHours() : data.getHours()}:${data.getMinutes() < 10 ? "0" + data.getMinutes() : data.getMinutes()}:${data.getSeconds() < 10 ? "0" + data.getSeconds() : data.getSeconds()}`
-    }
-
-    const getAmountOfTime = (a: Date, b: Date) => {
-        let diff = b.getTime() - a.getTime();
-
-        var hours = Math.floor(diff / (1000 * 60 * 60));
-        diff -= hours * (1000 * 60 * 60);
-
-        var mins = Math.floor(diff / (1000 * 60));
-        diff -= mins * (1000 * 60);
-
-        return `${hours < 10 ? "0" + hours : hours}:${mins < 10 ? "0" + mins : mins}`
-    }
-
     return (
         <div style={{ margin: "2rem" }}>
-            <Typography color="primary" variant="h4" component="h1" className="page-header" gutterBottom>
-                Time Calculator
-            </Typography>
             <h1 className="clock">{formatDate(now)}</h1>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
@@ -85,7 +68,13 @@ export function Time() {
                     />
                 </Grid>
             </MuiPickersUtilsProvider>
-            <h1 className="clock">{getAmountOfTime(startDate, endDate)}</h1>
+            <h1 className="clock">{getAmountOfTimeString(startDate, endDate)}</h1>
+            <Input className="input" value={name} onChange={(e) => setName(e.target.value)} />
+            <Button className="button" color="primary" variant="contained" onClick={() => {
+                addItem({ name: name, startTime: startDate, endTime: endDate })
+            }}>
+                Save
+            </Button>
         </ div>
     );
 }

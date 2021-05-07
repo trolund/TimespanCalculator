@@ -10,12 +10,12 @@ export type menuItem = {
 
 export const menu: menuItem[] = [
     {
-        name: 'home',
+        name: 'New time',
         icon: (<RestoreIcon />),
         href: "/"
     },
     {
-        name: 'list',
+        name: 'Saved times',
         icon: (<RestoreIcon />),
         href: "/list"
     }

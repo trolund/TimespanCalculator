@@ -1,7 +1,7 @@
 import { Avatar, List as ListContainer, Button, Container, ListItem, ListItemAvatar, ListItemText, Paper } from "@material-ui/core";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { getItems, reset, TimeItem } from "../services/timeSaver";
+import { getItems, removeItem, reset, TimeItem } from "../services/timeSaver";
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { Delete } from '@material-ui/icons';
 import { formatDate } from "../services/dateService";
@@ -38,7 +38,7 @@ const List = () => {
                             </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={item.name} secondary={timeString(item.startTime, item.endTime)} />
-                        <Delete />
+                        <Delete onClick={() => removeItem(index).then(() => getData())} />
                     </ListItem>
                 )}
             </ListContainer>

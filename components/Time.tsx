@@ -36,7 +36,7 @@ export function Time() {
     }, []);
 
     return (
-        <Container maxWidth="sm" className="container">
+        <>
             <h1 className="clock">{formatDate(now)}</h1>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
@@ -75,6 +75,6 @@ export function Time() {
             }}>
                 Save
             </Button>
-        </ Container>
+        </>
     );
 }

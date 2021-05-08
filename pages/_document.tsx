@@ -115,8 +115,7 @@ export default class MyDocument extends Document {
             rel="apple-touch-startup-image"
           />
         </Head>
-        <body>
-          {/* style={{ backgroundColor: "#035efc" }} */}
+        <body style={{ backgroundColor: "#035efc" }}>
           <Main />
           <NextScript />
         </body>

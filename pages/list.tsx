@@ -1,8 +1,9 @@
-import { Avatar, List as ListContainer, Button, Container, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
+import { Avatar, List as ListContainer, Button, Container, ListItem, ListItemAvatar, ListItemText, Paper } from "@material-ui/core";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { getItems, reset, TimeItem } from "../services/timeSaver";
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import { Delete } from '@material-ui/icons';
 import { formatDate } from "../services/dateService";
 import { SumOfDay } from "../components/sumOfDay";
 
@@ -37,6 +38,7 @@ const List = () => {
                             </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={item.name} secondary={timeString(item.startTime, item.endTime)} />
+                        <Delete />
                     </ListItem>
                 )}
             </ListContainer>
@@ -45,7 +47,9 @@ const List = () => {
             }}>
                 Reset
                     </Button>
-            {SumOfDay({ times: data })}
+            <Paper elevation={3}>
+                {SumOfDay({ times: data })}
+            </Paper>
         </Container>
     );
 }

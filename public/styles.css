@@ -9,10 +9,11 @@
 }
 
 .clock {
-    padding: 2rem;
+    position: relative;
+    padding: 1rem;
     margin: auto;
     text-align: center;
-    color: var(--main-color);
+    color: rgb(102, 102, 102);
 }
 
 .app-bar {

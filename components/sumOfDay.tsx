@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Grid, Input, Typography } from '@material-ui/core'
-import DateFnsUtils from '@date-io/date-fns'
-import { formatDate, getAmountOfTime, parseDate, timeString } from '../services/dateService';
+import { getAmountOfTime, parseDate, timeString } from '../services/dateService';
 import { TimeItem } from '../services/timeSaver';
 
 interface SumOfDayProps {
@@ -40,7 +38,7 @@ export function SumOfDay({ times }: SumOfDayProps) {
     }
 
     return (
-        <div style={{ margin: "0rem", padding: "0rem" }}>
+        <div>
             <p className="clock">Sum of the day</p>
             <h1 className="clock">{timeString(sum.hours, sum.mins)}</h1>
         </ div>

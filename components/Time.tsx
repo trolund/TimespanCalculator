@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Container, Grid, Input, Typography } from '@material-ui/core'
+import { Button, Container, Grid, Input, TextField, Typography } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns'
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { addItem } from '../services/timeSaver';
@@ -14,7 +14,7 @@ export function Time() {
     const [now, onChange] = useState(Date.now);
     const [startDate, setStartDate] = React.useState(new Date());
     const [endDate, setendDate] = React.useState(new Date());
-    const [name, setName] = useState<string>("code");
+    const [name, setName] = useState<string>("");
 
     const handleDateChange = (type: TimeType, date: Date) => {
         if (type === TimeType.START) {
@@ -69,7 +69,7 @@ export function Time() {
                 </Grid>
             </MuiPickersUtilsProvider>
             <h1 className="clock">{getAmountOfTimeString(startDate, endDate)}</h1>
-            <Input className="input" value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField className="input" label="Description" value={name} onChange={(e) => setName(e.target.value)} id="standard-basic" />
             <Button className="button" color="primary" variant="contained" onClick={() => {
                 addItem({ name: name, startTime: startDate, endTime: endDate })
             }}>

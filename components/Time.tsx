@@ -43,7 +43,7 @@ export function Time() {
                     <KeyboardTimePicker
                         color="primary"
                         margin="normal"
-                        id="time-picker"
+                        id="time-picker-start"
                         label="Start time"
                         format="HH:mm"
                         ampm={false}
@@ -56,7 +56,7 @@ export function Time() {
                     <KeyboardTimePicker
                         color="primary"
                         margin="normal"
-                        id="time-picker"
+                        id="time-picker-end"
                         format="HH:mm"
                         ampm={false}
                         label="End time"

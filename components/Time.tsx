@@ -4,17 +4,26 @@ import DateFnsUtils from '@date-io/date-fns'
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { addItem } from '../services/timeSaver';
 import { formatDate, getAmountOfTimeString } from '../services/dateService';
+import { Done, HighlightOff, Save } from '@material-ui/icons';
 
 enum TimeType {
     START,
     END
 }
 
+
+enum Op {
+    OK,
+    FAIL
+}
+
+
 export function Time() {
     const [now, onChange] = useState(Date.now);
     const [startDate, setStartDate] = React.useState(new Date());
     const [endDate, setendDate] = React.useState(new Date());
     const [name, setName] = useState<string>("");
+    const [status, setStatus] = useState<Op | null>(null);
 
     const handleDateChange = (type: TimeType, date: Date) => {
         if (type === TimeType.START) {
@@ -34,6 +43,39 @@ export function Time() {
             clearInterval(interval);
         }
     }, []);
+
+    const afterSave = (type: Op) => {
+        setStatus(type)
+        const interval = setInterval(
+            () => {
+                setStatus(null)
+                clearInterval(interval);
+            },
+            1000
+        );
+    }
+
+    const ButtonText = (type: Op | null) => {
+        switch (type) {
+            case Op.OK:
+                return "Saved"
+            case Op.FAIL:
+                return "Failed"
+            case null:
+                return "Save"
+        }
+    }
+
+    const getIcon = (type: Op | null) => {
+        switch (type) {
+            case Op.OK:
+                return <Done />
+            case Op.FAIL:
+                return <HighlightOff />
+            case null:
+                return <Save />
+        }
+    }
 
     return (
         <>
@@ -70,11 +112,17 @@ export function Time() {
             </MuiPickersUtilsProvider>
             <h1 className="clock">{getAmountOfTimeString(startDate, endDate)}</h1>
             <TextField className="input" label="Description" value={name} onChange={(e) => setName(e.target.value)} id="standard-basic" />
-            <Button className="button" color="primary" variant="contained" onClick={() => {
-                addItem({ name: name, startTime: startDate, endTime: endDate })
-            }}>
-                Save
-                    </Button>
+            <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={getIcon(status)} disabled={status !== null} className="button" onClick={() => {
+                    addItem({ name: name, startTime: startDate, endTime: endDate })
+                        .then(() => afterSave(Op.OK))
+                        .catch(() => afterSave(Op.FAIL))
+                }}>
+                {ButtonText(status)}
+            </Button>
         </>
     );
 }

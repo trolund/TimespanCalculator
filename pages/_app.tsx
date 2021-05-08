@@ -50,7 +50,6 @@ export default function MyApp(props: IMyApp) {
     <React.Fragment>
       <Head>
         <title>{title}</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
         <AppBar position="fixed">

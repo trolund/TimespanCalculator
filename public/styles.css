@@ -63,5 +63,13 @@ header {
 }
 
 .bottom-space {
-    height: env(safe-area-inset-bottom, 20px)
+    height: env(safe-area-inset-bottom, 20px);
+    background-color: red;
+}
+
+.bg-div {
+    position: fixed;
+    background-color: #fff;
+    width: 100vw !important;
+    height: 100vh !important;
 }

@@ -116,6 +116,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body style={{ backgroundColor: "#035efc" }}>
+          <div className="bg-div"></div>
           <Main />
           <NextScript />
         </body>

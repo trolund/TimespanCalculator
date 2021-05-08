@@ -53,7 +53,7 @@ export default function MyApp(props: IMyApp) {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar variant="dense">
             <Typography variant="h6" color="inherit">
               {title}

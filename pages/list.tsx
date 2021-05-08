@@ -27,30 +27,26 @@ const List = () => {
     }
 
     return (
-        <>
-            <div>
-                <Container maxWidth="sm" className="container">
-                    <ListContainer>
-                        {data.map((item, index) =>
-                            <ListItem key={index}>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <AccessTimeIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary={item.name} secondary={timeString(item.startTime, item.endTime)} />
-                            </ListItem>
-                        )}
-                    </ListContainer>
-                    <Button className="button" color="primary" variant="contained" onClick={() => {
-                        reset().then(() => getData())
-                    }}>
-                        Reset
+        <Container maxWidth="sm" className="container">
+            <ListContainer>
+                {data.map((item, index) =>
+                    <ListItem key={index}>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <AccessTimeIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={item.name} secondary={timeString(item.startTime, item.endTime)} />
+                    </ListItem>
+                )}
+            </ListContainer>
+            <Button className="button" color="primary" variant="contained" onClick={() => {
+                reset().then(() => getData())
+            }}>
+                Reset
                     </Button>
-                    {SumOfDay({ times: data })}
-                </Container>
-            </div>
-        </>
+            {SumOfDay({ times: data })}
+        </Container>
     );
 }
 

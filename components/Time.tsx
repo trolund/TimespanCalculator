@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Grid, Input, Typography } from '@material-ui/core'
+import { Button, Container, Grid, Input, Typography } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns'
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { addItem } from '../services/timeSaver';
@@ -36,7 +36,7 @@ export function Time() {
     }, []);
 
     return (
-        <div style={{ margin: "2rem" }}>
+        <Container maxWidth="sm" className="container">
             <h1 className="clock">{formatDate(now)}</h1>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
@@ -75,6 +75,6 @@ export function Time() {
             }}>
                 Save
             </Button>
-        </ div>
+        </ Container>
     );
 }

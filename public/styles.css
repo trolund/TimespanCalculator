@@ -3,8 +3,12 @@
 }
 
 .container {
-    padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px) calc(env(safe-area-inset-bottom, 20px) + 70px) env(safe-area-inset-left, 20px);
+    height: calc(100vh - 50px) !important;
+    background-color: #fff  !important;
+    min-height: calc(100vh - 50px) !important;
+    padding: calc(env(safe-area-inset-top, 20px) + 50px) env(safe-area-inset-right, 20px) calc(env(safe-area-inset-bottom, 20px) + 70px) env(safe-area-inset-left, 20px);
 }
+
 
 .page-header {
     padding: 3rem;

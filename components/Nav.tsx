@@ -39,7 +39,6 @@ const Nav: React.FC<navProps> = ({ setLocation, location }) => {
                 })}
 
             </BottomNavigation>
-            <div className="bottom-space"></div>
         </ div>)
 }
 

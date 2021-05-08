@@ -61,3 +61,7 @@ header {
     margin-bottom: 2rem;
     width: 100%;
 }
+
+.bottom-space {
+    height: env(safe-area-inset-bottom, 20px)
+}

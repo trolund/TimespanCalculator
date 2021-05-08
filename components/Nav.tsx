@@ -27,17 +27,20 @@ const Nav: React.FC<navProps> = ({ setLocation, location }) => {
         setLocation(newValue);
     }
 
-    return (<BottomNavigation
-        className="nav"
-        value={location}
-        onChange={go}
-        showLabels
-    >
-        {menu.map(item => {
-            return (<BottomNavigationAction key={item.name} label={item.name} icon={item.icon} />)
-        })}
+    return (
+        <div className="nav">
+            <BottomNavigation
+                value={location}
+                onChange={go}
+                showLabels
+            >
+                {menu.map(item => {
+                    return (<BottomNavigationAction key={item.name} label={item.name} icon={item.icon} />)
+                })}
 
-    </BottomNavigation>)
+            </BottomNavigation>
+            <div className="bottom-space"></div>
+        </ div>)
 }
 
 export default Nav;

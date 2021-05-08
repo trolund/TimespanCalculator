@@ -15,9 +15,18 @@ const getAmountOfTime = (a: Date, b: Date): [number, number] => {
     return [hours, mins];
 }
 
+const validateTime = (times: [number, number]): boolean => {
+    const [hours, mins] = times
+    return hours >= 0 && mins >= 0
+}
+
 const getAmountOfTimeString = (a: Date, b: Date) => {
     const [hours, mins] = getAmountOfTime(a, b)
-    return `${hours < 10 ? "0" + hours : hours}:${mins < 10 ? "0" + mins : mins}`
+    if (validateTime([hours, mins])) {
+        return `${hours < 10 ? "0" + hours : hours}:${mins < 10 ? "0" + mins : mins}`
+    }
+
+    return 'Invalid input'
 }
 
 const timeString = (hours: number, mins: number) => {
@@ -26,4 +35,4 @@ const timeString = (hours: number, mins: number) => {
 
 const parseDate = (d: any) => new Date(Date.parse(d))
 
-export { formatDate, getAmountOfTime, getAmountOfTimeString, timeString, parseDate }
+export { formatDate, getAmountOfTime, getAmountOfTimeString, timeString, parseDate, validateTime }

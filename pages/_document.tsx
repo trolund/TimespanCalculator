@@ -22,6 +22,8 @@ export default class MyDocument extends Document {
   }
 
   render() {
+
+
     return (
       <html lang="en">
         <Head>
@@ -30,6 +32,7 @@ export default class MyDocument extends Document {
 
           {/* Progressive Web App: Match the width of app’s content with width of viewport for mobile devices */}
           <meta name="viewport" content="viewport-fit=cover" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
           {/* Progressive Web App: Have address bar match brand colors */}
           <meta name="theme-color" content="#fff" />
@@ -115,7 +118,7 @@ export default class MyDocument extends Document {
             rel="apple-touch-startup-image"
           />
         </Head>
-        <body style={{ backgroundColor: "#035efc" }}>
+        <body style={{ backgroundColor: "#035efc", userSelect: "none" }}>
           <div className="bg-div"></div>
           <Main />
           <NextScript />

@@ -5,16 +5,16 @@
 .container {
     height: calc(100vh) !important;
     background-color: #fff  !important;
-    padding: calc(env(safe-area-inset-top, 20px) + 70px) env(safe-area-inset-right, 0.5rem) 0px env(safe-area-inset-left, 0.5rem);
+    padding: calc(env(safe-area-inset-top, 20px) + 70px) env(safe-area-inset-right, 10px) 0px env(safe-area-inset-left, 10px);
 }
 
 
-.page-header {
-    padding: 3rem;
+/* .page-header {
+    padding: 2rem;
     margin: auto;
     text-align: center;
     color: var(--main-color);
-}
+} */
 
 .clock {
     padding: 2rem;

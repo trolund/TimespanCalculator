@@ -31,8 +31,7 @@ export default class MyDocument extends Document {
           {/* {this.props.styleTags} */}
 
           {/* Progressive Web App: Match the width of app’s content with width of viewport for mobile devices */}
-          <meta name="viewport" content="viewport-fit=cover" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 
           {/* Progressive Web App: Have address bar match brand colors */}
           <meta name="theme-color" content="#fff" />

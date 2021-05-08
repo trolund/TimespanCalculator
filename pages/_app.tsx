@@ -54,7 +54,7 @@ export default function MyApp(props: IMyApp) {
       </Head>
       <ThemeProvider theme={theme}>
         <AppBar position="fixed">
-          <Toolbar variant="dense">
+          <Toolbar variant="dense" className="app-bar">
             <Typography variant="h6" color="inherit">
               {title}
             </Typography>

@@ -8,14 +8,6 @@
     padding: calc(env(safe-area-inset-top, 20px) + 70px) env(safe-area-inset-right, 10px) 0px env(safe-area-inset-left, 10px);
 }
 
-
-/* .page-header {
-    padding: 2rem;
-    margin: auto;
-    text-align: center;
-    color: var(--main-color);
-} */
-
 .clock {
     padding: 2rem;
     margin: auto;
@@ -24,8 +16,8 @@
 }
 
 .app-bar {
-    padding: 1rem;
-    padding-top: env(safe-area-inset-top, 50px);
+    padding: 10px;
+    padding-top: calc(env(safe-area-inset-top, 10px) + 210px);
 }
 
 header {
@@ -39,7 +31,7 @@ header {
     bottom: 0;
     background: rgb(250, 250, 250) !important;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    padding-bottom: env(safe-area-inset-bottom, 20px);
+    bottom: env(safe-area-inset-bottom);
 }
 
 .button {
@@ -58,11 +50,6 @@ header {
     margin-top: 2rem;
     margin-bottom: 2rem;
     width: 100%;
-}
-
-.bottom-space {
-    height: env(safe-area-inset-bottom, 20px);
-    background-color: red;
 }
 
 .bg-div {

@@ -32,6 +32,10 @@ header {
     background: rgb(250, 250, 250) !important;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     bottom: 0;
+}
+
+.nav-button {
+    height: calc(env(safe-area-inset-bottom, 0px) + 56px) !important;
     padding-bottom: calc(env(safe-area-inset-bottom, 0px) / 2);
 }
 

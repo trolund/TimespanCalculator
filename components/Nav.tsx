@@ -33,6 +33,7 @@ const Nav: React.FC<navProps> = ({ setLocation, location }) => {
                 value={location}
                 onChange={go}
                 showLabels
+                className="nav-button"
             >
                 {menu.map(item => {
                     return (<BottomNavigationAction key={item.name} label={item.name} icon={item.icon} />)

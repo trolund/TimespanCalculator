@@ -28,29 +28,30 @@ const List = () => {
     }
 
     return (
-        <Container maxWidth="sm" className="container">
-            <ListContainer>
-                {data.map((item, index) =>
-                    <ListItem key={index}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <AccessTimeIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={item.name} secondary={timeString(item.startTime, item.endTime)} />
-                        <Delete onClick={() => removeItem(index).then(() => getData())} />
-                    </ListItem>
-                )}
-            </ListContainer>
-            <Button className="button" color="primary" variant="contained" onClick={() => {
-                reset().then(() => getData())
-            }}>
-                Reset
-                    </Button>
-            <Paper elevation={3}>
-                {SumOfDay({ times: data })}
-            </Paper>
-        </Container>
+        <>
+            {SumOfDay({ times: data })}
+            <Container maxWidth="sm" className="container">
+                <ListContainer>
+
+                    {data.map((item, index) =>
+                        <ListItem key={index}>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <AccessTimeIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={item.name} secondary={timeString(item.startTime, item.endTime)} />
+                            <Delete onClick={() => removeItem(index).then(() => getData())} />
+                        </ListItem>
+                    )}
+                </ListContainer>
+                <Button className="button" color="primary" variant="contained" onClick={() => {
+                    reset().then(() => getData())
+                }}>
+                    Reset
+            </Button>
+            </Container>
+        </>
     );
 }
 

@@ -1,5 +1,6 @@
 :root {
-    --main-color: "#035efc";
+    --main-color: #035efc;
+    --font-color: rgb(233, 233, 233);
 }
 
 .container {
@@ -13,7 +14,7 @@
     padding: 1rem;
     margin: auto;
     text-align: center;
-    color: rgb(102, 102, 102);
+    /* color: rgb(102, 102, 102); */
 }
 
 .app-bar {
@@ -23,6 +24,14 @@
 
 header {
     transform: translateY(-200px);
+}
+
+.sum-div {
+    padding-top: calc(env(safe-area-inset-top, 10px) + 70px);
+    position: relative;
+    background-color: var(--main-color) !important;
+    margin-bottom: -50px;
+    color: #fff !important;
 }
 
 .nav {

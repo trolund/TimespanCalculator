@@ -1,4 +1,5 @@
 import localforage from "localforage"
+import moment from "moment"
 
 export type TimeItem = {
     name: string;
@@ -9,10 +10,10 @@ export type TimeItem = {
 
 const key = "timeSaver"
 
-const isServer = () => typeof window === undefined
-
 const addItem = async (item: TimeItem) => {
     const list = await getItems()
+    item.endTime = moment(item.endTime).set({ seconds: 0, milliseconds: 0 }).toDate()
+    item.startTime = moment(item.startTime).set({ seconds: 0, milliseconds: 0 }).toDate()
     if (Array.isArray(list)) {
         localforage.setItem(key, JSON.stringify([...list, item]))
     } else {
@@ -24,6 +25,8 @@ const getItems = async () => {
     const json: string = await localforage.getItem(key)
     const data: TimeItem[] = JSON.parse(json)
     if (Array.isArray(data)) {
+        console.log(data);
+
         return data;
     }
     return []
@@ -47,6 +50,15 @@ const reset = async () => {
     localforage.setItem(key, JSON.stringify([]))
 }
 
+const getMaxDate = async () => {
+    const list = await getItems();
+    if (list.length > 0) {
+        const max = list.reduce((a, b) => new Date(a.endTime).getTime() > new Date(b.endTime).getTime() ? a : b);
+        return new Date(max.endTime);
+    }
+    return new Date();
+}
 
 
-export { addItem, getItems, reset, removeItem }
+
+export { addItem, getItems, reset, removeItem, getMaxDate }

@@ -40,6 +40,8 @@ const getAmountOfTimeString = (a: Date, b: Date) => {
     return 'Invalid input'
 }
 
+const dateToString = (d: Date): string => timeString(moment.duration(d.getTime()).hours(), moment.duration(d.getTime()).minutes())
+
 const timeString = (hours: number, mins: number) => {
     return `${hours < 10 ? "0" + hours : hours}:${mins < 10 ? "0" + mins : mins}`
 }

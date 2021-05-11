@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Button, Container, Grid, Input, TextField, Typography } from '@material-ui/core'
 import DateFnsUtils from '@date-io/date-fns'
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
-import { addItem } from '../services/timeSaver';
+import { addItem, getMaxDate } from '../services/timeSaver';
 import { formatDate, getAmountOfTimeString } from '../services/dateService';
 import { Done, HighlightOff, Save } from '@material-ui/icons';
+import moment from 'moment';
 
 enum TimeType {
     START,
@@ -20,16 +21,18 @@ enum Op {
 
 export function Time() {
     const [now, onChange] = useState(Date.now);
-    const [startDate, setStartDate] = React.useState(new Date());
-    const [endDate, setendDate] = React.useState(new Date());
+    const [startDate, setStartDate] = React.useState(moment(new Date()).set({ seconds: 0, milliseconds: 0 }).toDate());
+    const [endDate, setEndDate] = React.useState(moment(new Date()).set({ seconds: 0, milliseconds: 0 }).toDate());
     const [name, setName] = useState<string>("");
     const [status, setStatus] = useState<Op | null>(null);
 
     const handleDateChange = (type: TimeType, date: Date) => {
+        const input = moment(date).set({ seconds: 0 }).toDate()
+
         if (type === TimeType.START) {
-            setStartDate(date)
+            setStartDate(input)
         } else {
-            setendDate(date)
+            setEndDate(input)
         }
     };
 
@@ -40,15 +43,31 @@ export function Time() {
         );
 
         return () => {
-            clearInterval(interval);
+            clearInterval(interval)
         }
     }, []);
+
+    useEffect(() => {
+        updateDates()
+    }, []);
+
+    const updateDates = () => {
+        getMaxDate().then((d) => {
+            if (d !== null) {
+                const end = moment(moment(d).set({ seconds: 0, milliseconds: 0 }).toDate()).add(15, 'minutes').toDate()
+
+                setEndDate(moment(end).set({ seconds: 0, milliseconds: 0 }).toDate())
+                setStartDate(moment(d).set({ seconds: 0, milliseconds: 0 }).toDate())
+            }
+        })
+    }
 
     const afterSave = (type: Op) => {
         setStatus(type)
         const interval = setInterval(
             () => {
                 setStatus(null)
+                updateDates()
                 clearInterval(interval);
             },
             1000

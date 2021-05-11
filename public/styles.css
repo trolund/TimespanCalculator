@@ -14,7 +14,7 @@
     padding: 1rem;
     margin: auto;
     text-align: center;
-    /* color: rgb(102, 102, 102); */
+    color: rgb(100, 100, 100) !important;
 }
 
 .app-bar {
@@ -27,11 +27,7 @@ header {
 }
 
 .sum-div {
-    padding-top: calc(env(safe-area-inset-top, 10px) + 70px);
-    position: relative;
-    background-color: var(--main-color) !important;
-    margin-bottom: -50px;
-    color: #fff !important;
+    color: rgb(100, 100, 100) !important;
 }
 
 .nav {

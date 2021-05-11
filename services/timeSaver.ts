@@ -25,8 +25,6 @@ const getItems = async () => {
     const json: string = await localforage.getItem(key)
     const data: TimeItem[] = JSON.parse(json)
     if (Array.isArray(data)) {
-        console.log(data);
-
         return data;
     }
     return []

@@ -29,10 +29,10 @@ const List = () => {
 
     return (
         <>
-            {SumOfDay({ times: data })}
-            <Container maxWidth="sm" className="container">
-                <ListContainer>
 
+            <Container maxWidth="sm" className="container">
+                {SumOfDay({ times: data })}
+                <ListContainer>
                     {data.map((item, index) =>
                         <ListItem key={index}>
                             <ListItemAvatar>

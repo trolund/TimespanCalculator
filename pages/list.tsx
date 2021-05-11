@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getItems, removeItem, reset, TimeItem } from "../services/timeSaver";
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { Delete } from '@material-ui/icons';
-import { formatDate } from "../services/dateService";
+import { formatDate, getAmountOfTime, getTime } from "../services/dateService";
 import { SumOfDay } from "../components/sumOfDay";
 
 
@@ -23,8 +23,9 @@ const List = () => {
         })
     }
 
-    const timeString = (a: any, b: any) => {
-        return `${formatDate(a)} - ${formatDate(b)}`
+    const timeString = (a: Date, b: Date) => {
+        const t = getTime(getAmountOfTime(a, b))
+        return `${formatDate(a.getTime())} - ${formatDate(b.getTime())} | ${t.hours}:${t.mins}`
     }
 
     return (
@@ -40,7 +41,7 @@ const List = () => {
                                     <AccessTimeIcon />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary={item.name} secondary={timeString(item.startTime, item.endTime)} />
+                            <ListItemText primary={item.name} secondary={timeString(new Date(item.startTime), new Date(item.endTime))} />
                             <Delete onClick={() => removeItem(index).then(() => getData())} />
                         </ListItem>
                     )}

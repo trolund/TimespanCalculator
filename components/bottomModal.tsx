@@ -21,12 +21,10 @@ const BottomModal: React.FC<BottomModalProps> = ({ setOpen, isOpen, item, index,
     const [endTime, setEndTime] = useState<Date>(new Date(item?.endTime));
 
     useEffect(() => {
-        console.log(item);
         setName(item?.name)
         setStartTime(new Date(item?.startTime))
         setEndTime(new Date(item?.endTime))
     }, [item, index]);
-
 
     const handleDateChange = (type: TimeType, date: Date) => {
         const input = moment(date).set({ seconds: 0 }).toDate()

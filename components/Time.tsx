@@ -8,9 +8,6 @@ import { Done, HighlightOff, Save } from '@material-ui/icons';
 import moment from 'moment';
 import { Op, TimeType } from '../services/types';
 
-
-
-
 export function Time() {
     const [now, onChange] = useState(Date.now);
     const [startDate, setStartDate] = React.useState(moment(new Date()).set({ seconds: 0, milliseconds: 0 }).toDate());
@@ -40,18 +37,19 @@ export function Time() {
     }, []);
 
     useEffect(() => {
-        updateDates()
+        let isSubscribed = true
+        updateDates(isSubscribed)
+        return () => { isSubscribed = false }
     }, []);
 
-    const updateDates = () => {
-        getMaxDate().then((d) => {
-            if (d !== null) {
-                const end = moment(moment(d).set({ seconds: 0, milliseconds: 0 }).toDate()).add(15, 'minutes').toDate()
+    const updateDates = async (isSubscribed: boolean) => {
+        const d = await getMaxDate()
+        if (d !== null && isSubscribed) {
+            const end = moment(moment(d).set({ seconds: 0, milliseconds: 0 }).toDate()).add(15, 'minutes').toDate()
 
-                setEndDate(moment(end).set({ seconds: 0, milliseconds: 0 }).toDate())
-                setStartDate(moment(d).set({ seconds: 0, milliseconds: 0 }).toDate())
-            }
-        })
+            setEndDate(moment(end).set({ seconds: 0, milliseconds: 0 }).toDate())
+            setStartDate(moment(d).set({ seconds: 0, milliseconds: 0 }).toDate())
+        }
     }
 
     const afterSave = (type: Op) => {
@@ -59,7 +57,7 @@ export function Time() {
         const interval = setInterval(
             () => {
                 setStatus(null)
-                updateDates()
+                updateDates(true)
                 clearInterval(interval);
             },
             1000

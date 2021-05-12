@@ -10,23 +10,22 @@ import { TimeItem, updateItem } from '../services/timeSaver';
 interface BottomModalProps {
     setOpen: (b: boolean) => void;
     isOpen: boolean;
-    item: TimeItem | null;
-    index: number | null;
+    item: TimeItem;
+    index: number;
     refresh: () => void;
 }
 
 const BottomModal: React.FC<BottomModalProps> = ({ setOpen, isOpen, item, index, refresh }) => {
-    const [name, setName] = useState<string>("");
-    const [startTime, setStartTime] = useState<Date>(new Date());
-    const [endTime, setEndTime] = useState<Date>(new Date());
+    const [name, setName] = useState<string>(item?.name);
+    const [startTime, setStartTime] = useState<Date>(new Date(item?.startTime));
+    const [endTime, setEndTime] = useState<Date>(new Date(item?.endTime));
 
     useEffect(() => {
         console.log(item);
-
         setName(item?.name)
         setStartTime(new Date(item?.startTime))
         setEndTime(new Date(item?.endTime))
-    }, [item]);
+    }, [item, index]);
 
 
     const handleDateChange = (type: TimeType, date: Date) => {

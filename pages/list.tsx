@@ -1,4 +1,4 @@
-import { Avatar, List as ListContainer, Button, Container, ListItem, ListItemAvatar, ListItemText, Paper } from "@material-ui/core";
+import { Avatar, List as ListContainer, Button, Container, ListItem, ListItemAvatar, ListItemText, Paper, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@material-ui/core";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { getItems, removeItem, reset, TimeItem } from "../services/timeSaver";
@@ -14,6 +14,7 @@ const List = () => {
     const [openModal, setOpenModal] = useState(false);
     const [item, setItem] = useState<TimeItem | null>(null);
     const [index, setIndex] = useState<number | null>(null);
+    const [confirmModal, setConfirmModal] = useState<boolean>(false);
 
     useEffect(() => {
         getData()
@@ -27,9 +28,9 @@ const List = () => {
         })
     }
 
-    const handleItemClick = () => {
-        setIndex(index)
-        setItem(item)
+    const handleItemClick = (ti: TimeItem, i: number) => {
+        setIndex(i)
+        setItem(ti)
         setOpenModal(true)
     }
 
@@ -46,22 +47,47 @@ const List = () => {
                     {data.map((item, index) =>
                         <ListItem key={index}>
                             <ListItemAvatar>
-                                <Avatar onClick={handleItemClick}>
+                                <Avatar onClick={() => handleItemClick(item, index)}>
                                     <AccessTimeIcon />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText onClick={handleItemClick} primary={item.name} secondary={timeString(new Date(item?.startTime), new Date(item?.endTime))} />
+                            <ListItemText onClick={() => handleItemClick(item, index)} primary={item.name} secondary={timeString(new Date(item?.startTime), new Date(item?.endTime))} />
                             <Delete onClick={() => removeItem(index).then(() => getData())} />
                         </ListItem>
                     )}
                 </ListContainer>
                 <Button className="button buttom-button" color="primary" variant="contained" onClick={() => {
-                    reset().then(() => getData())
+                    setConfirmModal(true)
                 }}>
                     Reset
             </Button>
             </Container>
-            <BottomModal isOpen={openModal} setOpen={setOpenModal} item={item} index={index} refresh={getData} />
+            {item && <BottomModal isOpen={openModal} setOpen={setOpenModal} item={item} index={index} refresh={getData} />}
+            <Dialog
+                open={confirmModal}
+                keepMounted
+                onClose={() => setConfirmModal(false)}
+                aria-labelledby="alert-dialog-slide-title"
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle id="alert-dialog-slide-title">Delete all?</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        Sure you want to delete all times recorded?
+          </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setConfirmModal(false)} color="primary">
+                        Disagree
+          </Button>
+                    <Button onClick={() => {
+                        reset().then(() => getData())
+                        setConfirmModal(false)
+                    }} color="primary">
+                        Agree
+          </Button>
+                </DialogActions>
+            </Dialog>
         </>
     );
 }

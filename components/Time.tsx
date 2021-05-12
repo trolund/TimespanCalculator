@@ -6,17 +6,9 @@ import { addItem, getMaxDate } from '../services/timeSaver';
 import { formatDate, getAmountOfTimeString } from '../services/dateService';
 import { Done, HighlightOff, Save } from '@material-ui/icons';
 import moment from 'moment';
-
-enum TimeType {
-    START,
-    END
-}
+import { Op, TimeType } from '../services/types';
 
 
-enum Op {
-    OK,
-    FAIL
-}
 
 
 export function Time() {

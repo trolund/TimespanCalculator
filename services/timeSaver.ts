@@ -37,6 +37,15 @@ const removeItem = async (index: number) => {
     localforage.setItem(key, JSON.stringify(updatedList))
 }
 
+const updateItem = async (index: number, item: TimeItem) => {
+    const list = await getItems()
+    item.endTime = moment(item.endTime).set({ seconds: 0, milliseconds: 0 }).toDate()
+    item.startTime = moment(item.startTime).set({ seconds: 0, milliseconds: 0 }).toDate()
+    list[index] = item
+    reset();
+    localforage.setItem(key, JSON.stringify(list))
+}
+
 function removeArrayItem<T>(arr: Array<T>, index: number): Array<T> {
     if (index > -1) {
         arr.splice(index, 1);
@@ -59,4 +68,4 @@ const getMaxDate = async () => {
 
 
 
-export { addItem, getItems, reset, removeItem, getMaxDate }
+export { addItem, getItems, reset, removeItem, getMaxDate, updateItem }

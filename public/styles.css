@@ -3,6 +3,35 @@
     --font-color: rgb(233, 233, 233);
 }
 
+.buttom-button {
+    /* padding: 20px 10px 10px 20px !important;
+    width: 50%;
+    background-color: #CCC; */
+}
+
+.bottom-modal {
+    height: 85vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.76);
+    backdrop-filter: blur(8px);
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-top: 25px;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 56px) !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.bottom-modal > .buttons {
+    position: absolute;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 56px + 10px) !important;
+}
+
+
+
 .container {
     height: calc(100vh) !important;
     background-color: #fff  !important;

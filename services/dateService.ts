@@ -31,6 +31,15 @@ const validateTime = (times: [number, number]): boolean => {
     return hours >= 0 && mins >= 0
 }
 
+const validateTimeSpan = (a: Date, b: Date) => {
+    const { hours, mins } = getTime(getAmountOfTime(a, b))
+    if (validateTime([hours, mins])) {
+        return true
+    }
+    return false
+}
+
+
 const getAmountOfTimeString = (a: Date, b: Date) => {
     const { hours, mins } = getTime(getAmountOfTime(a, b))
     if (validateTime([hours, mins])) {
@@ -63,4 +72,4 @@ const today = (times: TimeItem[]): Time => {
     return { hours: hours, mins: minutes }
 }
 
-export { formatDate, getAmountOfTime, getAmountOfTimeString, timeString, parseDate, validateTime, today, getTime }
+export { formatDate, getAmountOfTime, getAmountOfTimeString, timeString, parseDate, validateTime, today, getTime, validateTimeSpan }

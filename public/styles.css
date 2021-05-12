@@ -14,7 +14,8 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: rgba(255, 255, 255, 0.76);
-    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     width: 100vw;
     position: fixed;
     bottom: 0;
